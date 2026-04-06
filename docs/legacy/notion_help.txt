@@ -1,0 +1,7 @@
+# Kingfisher
+
+Meet Kingfisher - a bird known for precision, patience, and striking only when the setup is right. That is exactly what the current version of this bot is built to do.
+
+Kingfisher is now a positional trading bot. Instead of chasing ultra-fast scalping moves and closing trades within seconds, it is designed to build and manage positions over a longer window. In practice, that means trades can stay open for minutes to hours while the bot manages entries, pending orders, spacing, profit-taking, and cycle-level risk rules.
+
+The older scalper generation laid the foundation for this system, but the current live model is different. Today, Kingfisher focuses on structured position management rather than pure speed.

@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="0; url=/kingfisher-bot-pages/AMER-LAPTOP/help/">
+  <script>
+    window.location.replace("/kingfisher-bot-pages/AMER-LAPTOP/help/");
+  </script>
+  <title>Kingfisher Help Center</title>
+  <meta name="description" content="Kingfisher help guide covering preferences, symbol configuration, and the positional cycle model.">
+  <style>
+    :root {
+      --bg: #071319;
+      --bg-soft: #0d1f27;
+      --panel: rgba(18, 42, 51, 0.92);
+      --panel-soft: rgba(24, 55, 66, 0.88);
+      --border: rgba(95, 181, 187, 0.22);
+      --text: #ebf7f6;
+      --muted: #92afb4;
+      --accent: #5ce0d0;
+      --accent-deep: #123f43;
+      --success: #5dd98f;
+      --warning: #efbc62;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --content-width: 1180px;
+      --mono: "Consolas", "SFMono-Regular", "Liberation Mono", monospace;
+      --sans: "Segoe UI", "Trebuchet MS", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(92, 224, 208, 0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(239, 188, 98, 0.14), transparent 22%),
+        linear-gradient(180deg, #071319 0%, #0a1820 40%, #061117 100%);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    code {
+      font-family: var(--mono);
+      font-size: 0.94em;
+      padding: 0.14rem 0.4rem;
+      border-radius: 999px;
+      background: rgba(92, 224, 208, 0.12);
+      color: #dffff9;
+    }
+
+    .shell {
+      width: min(calc(100% - 32px), var(--content-width));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 56px 0 32px;
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(18, 42, 51, 0.96), rgba(9, 24, 30, 0.95)),
+        linear-gradient(145deg, rgba(92, 224, 208, 0.08), transparent 55%);
+      box-shadow: var(--shadow);
+      padding: 36px;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -90px auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(92, 224, 208, 0.16), transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(92, 224, 208, 0.25);
+      background: rgba(92, 224, 208, 0.09);
+      color: #c8fffa;
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 14px;
+      line-height: 1.15;
+    }
+
+    h1 {
+      max-width: 11ch;
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      font-size: 1.08rem;
+    }
+
+    .lead {
+      max-width: 68ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 18px 0 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .hero-panel,
+    .section-card,
+    .nav-card,
+    .summary-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--panel);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel {
+      padding: 22px;
+    }
+
+    .hero-panel ul,
+    .section-card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .hero-panel li,
+    .section-card li {
+      margin: 0 0 8px;
+      color: var(--muted);
+    }
+
+    .hero-panel strong,
+    .section-card strong {
+      color: var(--text);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 290px minmax(0, 1fr);
+      gap: 22px;
+      padding-bottom: 46px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 22px;
+      align-self: start;
+    }
+
+    .nav-card {
+      padding: 18px;
+      background: rgba(11, 29, 36, 0.94);
+    }
+
+    .nav-card h2 {
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .nav-list a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: var(--muted);
+      background: rgba(92, 224, 208, 0.04);
+      border: 1px solid transparent;
+      transition: 140ms ease;
+    }
+
+    .nav-list a:hover {
+      color: var(--text);
+      border-color: rgba(92, 224, 208, 0.18);
+      text-decoration: none;
+      transform: translateX(2px);
+    }
+
+    .content {
+      display: grid;
+      gap: 22px;
+    }
+
+    .section-card {
+      padding: 28px;
+    }
+
+    .section-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .summary-grid,
+    .settings-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-top: 18px;
+    }
+
+    .summary-card {
+      padding: 18px;
+      background: var(--panel-soft);
+    }
+
+    .summary-card p:last-child,
+    .section-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .setting {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(95, 181, 187, 0.18);
+      background: rgba(13, 31, 39, 0.94);
+    }
+
+    .setting p {
+      margin: 0;
+    }
+
+    .callout {
+      margin-top: 20px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--warning);
+      border-radius: 14px;
+      background: rgba(239, 188, 98, 0.08);
+      color: #fcebc7;
+    }
+
+    .footer {
+      width: min(calc(100% - 32px), var(--content-width));
+      margin: 0 auto 40px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: rgba(9, 24, 30, 0.88);
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      h1 {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-card,
+      .section-card,
+      .nav-card,
+      .footer {
+        padding: 20px;
+      }
+
+      .shell {
+        width: min(calc(100% - 20px), var(--content-width));
+      }
+
+      .nav-list a {
+        padding: 9px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="shell">
+      <section class="hero-card">
+        <span class="eyebrow">Kingfisher Help Center</span>
+        <h1>Trade with structure, not guesswork.</h1>
+        <p class="lead">
+          Kingfisher is a positional MT5 trading bot built around cycle management, spacing rules, basket logic,
+          and account-level safety controls. This page replaces the old Notion guide with a version that is easier
+          to host as a static help page.
+        </p>
+
+        <div class="hero-grid">
+          <article class="hero-panel">
+            <div class="badge">What Kingfisher Does</div>
+            <ul>
+              <li><strong>Opens an initial market position</strong> when the strategy confirms a valid direction.</li>
+              <li><strong>Places additional pending orders</strong> at configured spacing levels.</li>
+              <li><strong>Builds and manages baskets</strong> instead of depending on a single fast scalp.</li>
+              <li><strong>Supports lot progression</strong>, pending ladders, and cycle-level profit logic.</li>
+              <li><strong>Applies account safety rules</strong> like target achievement, loss control, and aggressive mode.</li>
+            </ul>
+          </article>
+
+          <article class="hero-panel">
+            <div class="badge">Current Model</div>
+            <p>
+              Older internal names such as <code>ema_scalper_settings</code> still exist for compatibility, but the live
+              behavior is now driven by a positional cycle engine. Kingfisher is designed to manage exposure over time,
+              not just jump in and out of the market in seconds.
+            </p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <main class="shell layout">
+    <aside class="sidebar">
+      <nav class="nav-card" aria-label="Help sections">
+        <h2>On This Page</h2>
+        <div class="nav-list">
+          <a href="#overview">Overview</a>
+          <a href="#preferences">Preferences Settings</a>
+          <a href="#symbol-config">Symbol Config Settings</a>
+          <a href="#trade-behavior">Trade Behavior Deep Dive</a>
+          <a href="#summary">Practical Summary</a>
+        </div>
+      </nav>
+    </aside>
+
+    <section class="content">
+      <article id="overview" class="section-card">
+        <div class="badge">Overview</div>
+        <h2>How the current positional model works</h2>
+        <div class="summary-grid">
+          <section class="summary-card">
+            <h3>1. Strategy decides direction</h3>
+            <p>The active strategy produces a BUY or SELL bias.</p>
+          </section>
+          <section class="summary-card">
+            <h3>2. Kingfisher opens a position</h3>
+            <p>The bot places the first market order for the cycle.</p>
+          </section>
+          <section class="summary-card">
+            <h3>3. Pending ladder can expand</h3>
+            <p>Loss-side pending orders may be added using the configured spacing rules.</p>
+          </section>
+          <section class="summary-card">
+            <h3>4. Profit or safety logic exits</h3>
+            <p>The bot can close single trades, close the basket, stop, or shut down.</p>
+          </section>
+        </div>
+        <div class="callout">
+          Kingfisher is positional because it manages a full trading cycle over minutes or hours, not just a single rapid scalp.
+        </div>
+      </article>
+
+      <article id="preferences" class="section-card">
+        <div class="badge">Config File</div>
+        <h2><code>preferences.json</code></h2>
+        <p>
+          This file controls app behavior, hotkeys, remembered user choices, notifications, updates, and account-level safety rules.
+        </p>
+
+        <div class="settings-grid">
+          <section class="setting">
+            <h3><code>hotkeys</code></h3>
+            <p>Controls quick actions for show or hide app, show or hide terminal, start bot, and stop bot.</p>
+          </section>
+          <section class="setting">
+            <h3><code>notifications</code></h3>
+            <p>Defines how app alerts appear, including internet-connectivity warnings.</p>
+          </section>
+          <section class="setting">
+            <h3><code>last_symbol_selection</code></h3>
+            <p>Stores the last selected symbol, whether it should load on startup, and the broker suffix behavior.</p>
+          </section>
+          <section class="setting">
+            <h3><code>target_achievement</code></h3>
+            <p>Stops or closes trading once a configured gain target has been reached.</p>
+          </section>
+          <section class="setting">
+            <h3><code>loss_control</code></h3>
+            <p>Main drawdown guard for closing or stopping the bot when loss thresholds are hit.</p>
+          </section>
+          <section class="setting">
+            <h3><code>aggressive_mode</code></h3>
+            <p>Optional compounding mode that increases lot behavior after profit conditions are met.</p>
+          </section>
+          <section class="setting">
+            <h3><code>updates</code></h3>
+            <p>Controls update checks, automatic downloads, installation behavior, and retained versions.</p>
+          </section>
+        </div>
+      </article>
+
+      <article id="symbol-config" class="section-card">
+        <div class="badge">Config File</div>
+        <h2><code>symbol_config.json</code></h2>
+        <p>
+          Each top-level key in this file is a trading symbol such as <code>BTCUSDm</code> or <code>XAUUSDm</code>.
+          Every symbol can have its own signal inputs, lot rules, spacing, and cycle behavior.
+        </p>
+
+        <div class="settings-grid">
+          <section class="setting">
+            <h3><code>ema_scalper_settings</code></h3>
+            <p>Legacy name for the section that still defines signal quality inputs such as EMA length, pip size, and trading zone values.</p>
+          </section>
+          <section class="setting">
+            <h3><code>execution</code></h3>
+            <p>Contains order execution rules such as slippage tolerance.</p>
+          </section>
+          <section class="setting">
+            <h3><code>lot_management</code></h3>
+            <p>Defines base lot, lot precision, min and max lot, bump settings, and starting size.</p>
+          </section>
+          <section class="setting">
+            <h3><code>magic</code></h3>
+            <p>Specifies the MT5 magic number used to isolate Kingfisher trades from manual or external ones.</p>
+          </section>
+          <section class="setting">
+            <h3><code>timeframe</code></h3>
+            <p>Sets the chart timeframe used by the strategy for that symbol.</p>
+          </section>
+          <section class="setting">
+            <h3><code>trade_behavior</code></h3>
+            <p>The most important symbol-specific section. It controls cycle limits, spacing, lot progression, hedging, and safety rules.</p>
+          </section>
+        </div>
+      </article>
+
+      <article id="trade-behavior" class="section-card">
+        <div class="badge">Deep Dive</div>
+        <h2><code>trade_behavior</code> fields that matter most</h2>
+
+        <div class="settings-grid">
+          <section class="setting">
+            <h3>Core capacity</h3>
+            <p><code>max_allowed_batches</code>, <code>max_allowed_trades</code>, <code>max_allowed_pos</code>, and <code>min_open_interval_s</code> control how quickly and how deeply the cycle can expand.</p>
+          </section>
+          <section class="setting">
+            <h3>Pending-order ladder</h3>
+            <p><code>pending_orders_limit</code>, <code>pending_orders_streak</code>, and <code>rung_count_added_per_fill</code> define the shape of the pending ladder.</p>
+          </section>
+          <section class="setting">
+            <h3>Spacing</h3>
+            <p><code>spacing_usd</code> takes priority when present. Otherwise the bot uses <code>spacing_pips</code> together with <code>pip_size</code>. Progressive spacing can be enabled with <code>progressive_gap</code>.</p>
+          </section>
+          <section class="setting">
+            <h3>Lot progression</h3>
+            <p><code>starting_lot</code>, <code>additive_factor</code>, and progressive position lot settings determine how exposure grows as the cycle expands.</p>
+          </section>
+          <section class="setting">
+            <h3>Profit and close behavior</h3>
+            <p><code>single_trade_profit</code>, counter-position close settings, and flash-image options define how the bot takes profit and reports closures.</p>
+          </section>
+          <section class="setting">
+            <h3>Advanced safety</h3>
+            <p><code>max_cycle_drawdown_usd</code> and <code>cycle_drawdown_csv_enabled</code> support protective cycle monitoring and post-run analysis.</p>
+          </section>
+        </div>
+
+        <div class="callout">
+          Change advanced acceleration, hedge, and drawdown settings carefully. These keys directly affect how the cycle behaves under pressure.
+        </div>
+      </article>
+
+      <article id="summary" class="section-card">
+        <div class="badge">Summary</div>
+        <h2>The shortest way to think about Kingfisher</h2>
+        <div class="summary-grid">
+          <section class="summary-card">
+            <h3><code>preferences.json</code></h3>
+            <p>Controls the app and account-level behavior.</p>
+          </section>
+          <section class="summary-card">
+            <h3><code>symbol_config.json</code></h3>
+            <p>Controls how each symbol trades.</p>
+          </section>
+          <section class="summary-card">
+            <h3>Kingfisher itself</h3>
+            <p>Runs a positional cycle engine that opens, layers, manages, and exits trades according to those rules.</p>
+          </section>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    This file is designed to be hosted as a static help page under a route such as
+    <code>/docs/help/</code> or <code>/help/</code>.
+  </footer>
+</body>
+</html>
