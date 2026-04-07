@@ -1,0 +1,22 @@
+{
+    "generated_utc": "2026-04-07T15:33:07.912996+00:00",
+    "customer_name": "",
+    "customer_code": "",
+    "publisher": "",
+    "app_name": "",
+    "version": "1.00.22",
+    "build_type": "Running",
+    "machine_name": "Amer-Laptop",
+    "username": "Amer",
+    "account_number": "",
+    "totals": {
+        "symbols": 0,
+        "closed_trades": 0,
+        "rows": 0,
+        "net_profit": 0.0,
+        "last_balance": 0.0,
+        "first_close_time": "",
+        "last_close_time": ""
+    },
+    "symbols": []
+}
