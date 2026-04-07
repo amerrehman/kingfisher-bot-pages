@@ -28,7 +28,7 @@
       <h1>Kingfisher Bot</h1>
       <p>This route is reserved for production Running builds. It uses only the Running installer and Running release notes.</p>
       <div class="actions">
-        <a class="btn btn-primary" href="https://raw.githubusercontent.com/amerrehman/kingfisher-bot-pages/main/AMER-LAPTOP/release/downloads/KingfisherBotSetup.exe">Download Running Setup</a>
+        <a class="btn btn-primary" id="download-setup-button" href="https://raw.githubusercontent.com/amerrehman/kingfisher-bot-pages/main/AMER-LAPTOP/release/downloads/KingfisherBotSetup.exe">Download Setup</a>
         <a class="btn btn-secondary" href="/kingfisher-bot-pages/AMER-LAPTOP/help/">View Help Guide</a>
       </div>
     </section>
@@ -54,7 +54,12 @@
       const summaryIndex = lines.findIndex((line) => line.toLowerCase() === "summary of changes");
       const noteLines = (summaryIndex >= 0 ? lines.slice(summaryIndex + 1) : lines.slice(1)).map((line) => line.replace(/^-+\s*/, "").trim()).filter(Boolean);
       const versionMatch = heading.match(/Kingfisher Bot\s+(.+)$/i);
-      document.getElementById("release-version").textContent = versionMatch ? versionMatch[1].trim() : heading;
+      const resolvedVersion = versionMatch ? versionMatch[1].trim() : heading;
+      document.getElementById("release-version").textContent = resolvedVersion;
+      const downloadButton = document.getElementById("download-setup-button");
+      if (downloadButton && resolvedVersion) {
+        downloadButton.textContent = "Download Setup " + resolvedVersion;
+      }
       document.getElementById("release-summary").textContent = noteLines[0] || "Latest Running setup release is ready to download.";
       const list = document.getElementById("release-notes");
       list.innerHTML = "";
@@ -66,6 +71,10 @@
     }
     loadReleaseNotes().catch(() => {
       document.getElementById("release-version").textContent = "Latest";
+      const downloadButton = document.getElementById("download-setup-button");
+      if (downloadButton) {
+        downloadButton.textContent = "Download Setup";
+      }
       document.getElementById("release-summary").textContent = "Current Running release metadata is temporarily unavailable.";
       document.getElementById("release-notes").innerHTML = "<li>Current Running release notes could not be loaded.</li>";
     });
